@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#d5dae1">
+    <meta name="description" content="Assistly AI first-line IT help desk">
+    <title>Assistly | AI Help Desk</title>
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/icons/assistly.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <button type="button" id="home-button" class="brand" aria-label="Return to Assistly homepage"><span class="brand-mark">✦</span><span>Assistly</span><small>AI HELP DESK</small></button>
+      <button type="button" id="admin-portal-button" class="portal-link" aria-label="Open IT admin portal">IT ADMIN portal</button>
+      <div class="agent"><span class="status-dot"></span><span>AI support agent<br><small>Here to help</small></span></div>
+    </header>
+    <main class="layout">
+      <section class="intro">
+        <p class="eyebrow">YOUR FIRST LINE OF SUPPORT</p>
+        <h1>How can I help?</h1>
+        <p class="subheading">Tell me what is going wrong and I’ll help you work through it. If I can’t resolve it, I’ll connect you with a person.</p>
+      </section>
+      <section class="card chat-card">
+        <div class="chat-heading"><div><p class="eyebrow">ASSISTLY</p><h2>Support conversation</h2></div><span class="sparkle">✦</span></div>
+        <div id="chat-messages" class="chat-messages" aria-live="polite">
+          <div class="message assistant"><span class="message-label">Assistly</span><p>Hi! Tell me what you need help with, and I’ll do my best to get you unstuck.</p></div>
+          <div class="quick-actions" aria-label="Common help topics">
+            <button type="button" class="quick-action" data-auto-send="true" data-prompt="I have a general IT issue and need help troubleshooting it.">General IT issue</button>
+            <button type="button" class="quick-action" data-auto-send="true" data-prompt="I am having trouble logging in to my account.">Login problems</button>
+            <button type="button" class="quick-action" data-auto-send="true" data-prompt="My computer will not turn on.">Computer will not turn on</button>
+            <button type="button" class="quick-action" data-auto-send="true" data-prompt="I need help resetting my password.">Password reset</button>
+            <button type="button" class="quick-action" data-auto-send="true" data-prompt="I am having trouble with my email.">Email problem</button>
+            <button type="button" class="quick-action" data-auto-send="true" data-prompt="I am having trouble connecting to Wi-Fi or the network.">Wi-Fi or network</button>
+            <button type="button" class="quick-action" data-prompt="">Other — please specify</button>
+          </div>
+        </div>
+        <form id="chat-form" class="chat-form">
+          <textarea id="chat-input" rows="2" maxlength="5000" placeholder="Describe your issue..." required></textarea>
+          <button type="submit" id="chat-submit"><span>↑</span> Send</button>
+        </form>
+        <p class="form-message" id="chat-message" role="alert"></p>
+        <div id="escalation" class="escalation" hidden>
+          <div><strong>Would you like a human to take over?</strong><p>I can pass this to the support team. Add your details and I’ll lodge the ticket.</p></div>
+          <button type="button" id="show-ticket-form">Contact support</button>
+        </div>
+      </section>
+      <section id="ticket-panel" class="card ticket-panel" hidden>
+        <div class="card-heading"><div><p class="eyebrow">HUMAN ESCALATION</p><h2>Lodge a support ticket</h2></div></div>
+        <form id="ticket-form">
+          <label>Your name<input name="requester" maxlength="120" placeholder="e.g. Jamie Lee" required></label>
+          <label>What should we call this issue?<input name="title" maxlength="160" placeholder="Briefly describe the issue" required></label>
+          <label>What is happening?<textarea name="description" maxlength="5000" rows="5" required></textarea></label>
+          <button type="submit" id="submit-button"><span>✦</span> Send to support</button>
+          <p class="form-message" id="form-message" role="alert"></p>
+        </form>
+      </section>
+    </main>
+    <main id="admin-portal" class="admin-layout" hidden>
+      <section id="admin-login" class="card admin-login">
+        <p class="eyebrow">TECHNICIAN ACCESS</p>
+        <h1>Assistly admin</h1>
+        <p class="subheading">Sign in to monitor and manage support tickets.</p>
+        <form id="admin-login-form">
+          <label>Username<input name="username" autocomplete="username" required></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+          <button type="submit">Sign in</button>
+          <p class="form-message" id="admin-login-message" role="alert"></p>
+        </form>
+        <p class="admin-warning">Demo credentials are enabled for local development only. Change them before deployment.</p>
+      </section>
+      <section id="admin-dashboard" hidden>
+        <header class="admin-header">
+          <div><p class="eyebrow">TECHNICIAN ADMIN</p><h1>Ticket notifications</h1></div>
+          <div class="admin-header-actions"><button id="refresh-tickets" class="secondary-button">Refresh</button><button id="admin-logout" class="secondary-button">Sign out</button></div>
+        </header>
+        <div class="admin-stats" id="admin-stats"></div>
+        <div id="ticket-list" class="ticket-list"></div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+    <script src="admin.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Assistly | Technician Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="admin-layout">
+      <section id="admin-login" class="card admin-login">
+        <p class="eyebrow">TECHNICIAN ACCESS</p>
+        <h1>Assistly admin</h1>
+        <p class="subheading">Sign in to monitor and manage support tickets.</p>
+        <form id="admin-login-form">
+          <label>Username<input name="username" autocomplete="username" required></label>
+          <label>Password<input name="password" type="password" autocomplete="current-password" required></label>
+          <button type="submit">Sign in</button>
+          <p class="form-message" id="admin-login-message" role="alert"></p>
+        </form>
+        <p class="admin-warning">Demo credentials are enabled for local development only. Change them before deployment.</p>
+      </section>
+      <section id="admin-dashboard" hidden>
+        <header class="admin-header">
+          <div><p class="eyebrow">TECHNICIAN ADMIN</p><h1>Ticket notifications</h1></div>
+          <div class="admin-header-actions"><button id="refresh-tickets" class="secondary-button">Refresh</button><button id="admin-logout" class="secondary-button">Sign out</button></div>
+        </header>
+        <div class="admin-stats" id="admin-stats"></div>
+        <div id="ticket-list" class="ticket-list"></div>
+      </section>
+    </main>
+    <script src="admin.js"></script>
+  </body>
+</html>
